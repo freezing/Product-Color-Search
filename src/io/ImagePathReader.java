@@ -19,6 +19,8 @@ public class ImagePathReader {
 				for (File file : subFolder.listFiles()) {
 					if (isImage(file)) {
 						imageFiles.add(file);
+						// Inserts only one image from a single folder
+						break;
 					}
 				}
 			}
