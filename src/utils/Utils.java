@@ -1,40 +1,18 @@
-package opencv;
+package utils;
 
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 
-import io.ImagePathReader;
-
-public class App {
-	private static final String rootPath = "/home/nikola/storage/BigData/Images/Products/index_images/";
-	
-	static {
-		System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-	}
-	
-    public static void main( String[] args ) {
-    	ImagePathReader ipr = new ImagePathReader(rootPath);
-    	
-    	
-    	
-    }
-    
-    private static boolean isImage(File file) {
-    	// TODO: implement better isImage algorithm
-		return !file.getName().endsWith(".txt");
-	}
-
-	public static BufferedImage Mat2BufferedImage(Mat m){
+public class Utils {
+	public static BufferedImage Mat2BufferedImage(Mat m) {
     	// source: http://answers.opencv.org/question/10344/opencv-java-load-image-to-gui/
     	// Fastest code
     	// The output can be assigned either to a BufferedImage or to an Image
@@ -53,8 +31,7 @@ public class App {
 
 	}
     
-    public static void displayImage(Image img2)
-	{   
+    public static void displayImage(Image img2) {   
 	    //BufferedImage img=ImageIO.read(new File("/HelloOpenCV/lena.png"));
 	    ImageIcon icon=new ImageIcon(img2);
 	    JFrame frame=new JFrame();
@@ -65,6 +42,5 @@ public class App {
 	    frame.add(lbl);
 	    frame.setVisible(true);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
 	}
 }
