@@ -3,11 +3,14 @@ package model;
 import java.util.List;
 
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Indexed;
 
 @Entity("images")
 public class ProcessedImage extends AbstractModel {
 	
 	private String url;
+	
+	@Indexed(unique=false, sparse = true)
 	private List<Color> colors;
 	
 	public String getUrl() {

@@ -31,4 +31,11 @@ public class UrlDriver extends MorphiaAbstractModelDriver<Url> {
 		Query<Url> query = createQuery().field("_id").equal(id);
 		return getDatastore().update(query, ops).getUpdatedExisting();
 	}
+
+	public boolean refreshAll() {
+		UpdateOperations<Url> ops = createUpdateOperations();
+		ops.set("isProcessed", false);
+		Query<Url> query = createQuery();
+		return getDatastore().update(query, ops).getUpdatedExisting();
+	}
 }

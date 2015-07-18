@@ -1,13 +1,15 @@
 package processing;
 
-import java.io.File;
 import java.util.List;
+
+import org.opencv.core.Mat;
 
 import model.Color;
 
 public class ColorExtractorImpl implements ColorExtractor {
 
-	public List<Color> extractColors(File imageFile) {
+	@Override
+	public List<Color> run(Mat image) {
 		// TODO Auto-generated method stub
 		return null;
 	}
