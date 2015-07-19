@@ -6,6 +6,7 @@ import org.mongodb.morphia.annotations.Entity;
 public class Url extends AbstractModel {
 	private String value;
 	private boolean isProcessed;
+	private boolean isInQueue;
 	
 	public Url() {}
 	
@@ -21,6 +22,10 @@ public class Url extends AbstractModel {
 		return isProcessed;
 	}
 	
+	public boolean getIsInQueue() {
+		return isInQueue;
+	}
+	
 	public Url setValue(String value) {
 		this.value = value;
 		return this;
@@ -28,6 +33,11 @@ public class Url extends AbstractModel {
 	
 	public Url setIsProcessed(boolean isProcessed) {
 		this.isProcessed = isProcessed;
+		return this;
+	}
+	
+	public Url setInQueue(boolean isInQueue) {
+		this.isInQueue = isInQueue;
 		return this;
 	}
 }
