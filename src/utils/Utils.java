@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 public class Utils {
 	public static BufferedImage Mat2BufferedImage(Mat m) {
@@ -18,8 +19,10 @@ public class Utils {
     	// The output can be assigned either to a BufferedImage or to an Image
 
 	    int type = BufferedImage.TYPE_BYTE_GRAY;
-	    if ( m.channels() > 1 ) {
+	    if ( m.channels() == 3 ) {
 	        type = BufferedImage.TYPE_3BYTE_BGR;
+	    } else if (m.channels() == 4) {
+	    	type = BufferedImage.TYPE_4BYTE_ABGR;
 	    }
 	    int bufferSize = m.channels()*m.cols()*m.rows();
 	    byte [] b = new byte[bufferSize];
@@ -36,11 +39,21 @@ public class Utils {
 	    ImageIcon icon=new ImageIcon(img2);
 	    JFrame frame=new JFrame();
 	    frame.setLayout(new FlowLayout());        
-	    frame.setSize(img2.getWidth(null)+50, img2.getHeight(null)+50);     
+	    frame.setSize(img2.getWidth(null)+50, img2.getHeight(null)+50);
 	    JLabel lbl=new JLabel();
 	    lbl.setIcon(icon);
 	    frame.add(lbl);
 	    frame.setVisible(true);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public static void displayImage(Mat img, boolean isLab) {
+		Mat cnv = img;
+		if (isLab) {
+			cnv = new Mat();
+			Imgproc.cvtColor(img, cnv, Imgproc.COLOR_Lab2BGR);
+		}
+		BufferedImage tmp = Utils.Mat2BufferedImage(cnv);
+		Utils.displayImage(tmp);
 	}
 }
