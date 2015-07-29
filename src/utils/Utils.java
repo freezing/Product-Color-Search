@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
+import constants.Constants;
+
 public class Utils {
 	public static BufferedImage Mat2BufferedImage(Mat m) {
     	// source: http://answers.opencv.org/question/10344/opencv-java-load-image-to-gui/
@@ -34,7 +36,8 @@ public class Utils {
 
 	}
     
-    public static void displayImage(Image img2) {   
+    public static void displayImage(Image img2) {
+		if (!Constants.DEBUG) return; 
 	    //BufferedImage img=ImageIO.read(new File("/HelloOpenCV/lena.png"));
 	    ImageIcon icon=new ImageIcon(img2);
 	    JFrame frame=new JFrame();
@@ -48,6 +51,7 @@ public class Utils {
 	}
 
 	public static void displayImage(Mat img, boolean isLab) {
+		if (!Constants.DEBUG) return;
 		Mat cnv = img;
 		if (isLab) {
 			cnv = new Mat();
